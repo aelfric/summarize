@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action='label' method='get'>
+    <input type=textarea name='sent' />
+    <input type=submit />
+</form>
+{% if sent %}
+<h1>{{sent}}</h1>
+<table>
+    <tr style='font-weight: bold'>
+        <td>&nbsp;</td>
+        {% for verb in verbs %}
+        <td>{{verb}}</td>
+        {% endfor %}
+    </tr>
+    {% for token in tokens %}
+    <tr>
+        <td>{{token}}</td>
+        {% set tok_idx = loop.index0 %}
+        {% for verb in verbs %}
+        <td>{{srl[loop.index0][tok_idx]}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
