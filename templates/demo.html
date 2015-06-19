@@ -12,9 +12,11 @@
         <input type=submit value='Analyze Text' class='btn'/>
     </form>
 </div>
+{% if sents %}
 <div class='row summary'>
 {% for sent in sents %}
 <p>{{sent}}</p>
 {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
