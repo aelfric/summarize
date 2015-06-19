@@ -4,18 +4,23 @@ encoding: utf-8
 from __future__ import division
 from goose import Goose
 from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
 import urllib2
 import math
 
 
 class Summarizer(object):
     def sentence_intersection(self, sent1, sent2):
-        normal = math.log(len(sent1) + len(sent2))
+        sent1_tokens = word_tokenize(sent1)
+        sent2_tokens = word_tokenize(sent2)
 
-        return len(set(sent1).intersection(sent2)) / normal
+        normal = math.log(len(sent1_tokens) + len(sent2_tokens))
+
+        return len(set(sent1_tokens).intersection(sent2_tokens)) / normal
 
     def rank_sentences(self, sentences):
         n = len(sentences)
+        print sentences[0][0]
         score =  [0 for x in xrange(n)]
 
         for i in range(0, n):
