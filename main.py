@@ -11,8 +11,10 @@ import math
 
 class Summarizer(object):
     def sentence_intersection(self, sent1, sent2):
-        sent1_tokens = word_tokenize(sent1)
-        sent2_tokens = word_tokenize(sent2)
+        sent1_tokens = [ w for w in word_tokenize(sent1) if w not in
+                        stopwords.words('english')]
+        sent2_tokens = [ w for w in word_tokenize(sent2) if w not in
+                        stopwords.words('english')]
 
         normal = math.log(len(sent1_tokens) + len(sent2_tokens))
 
