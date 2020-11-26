@@ -7,12 +7,15 @@
 {% block body %}
 <div class='row'>
     <form action='demo' method='post' accept-charset="utf-8">
+	<p><label>Summary Percentage (0.0 - 1.0)<input name='len' type='text'/></label>
         <p>Enter your text that you want to summarize in the text box below.</p>
         <textarea name='text' rows='9' cols='50'/>{{text}}</textarea>
         <input type=submit value='Analyze Text' class='btn'/>
     </form>
 </div>
 {% if sents %}
+<p><b>Original Length:</b> {{orig_length}}</p>
+<p><b>Summary Length:</b> {{sum_length}}</p>
 <div class='row summary'>
 {% for sent in sents %}
 <p>{{sent}}</p>
